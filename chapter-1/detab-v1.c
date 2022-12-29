@@ -19,12 +19,11 @@ int main()
 	char line[MAXSIZ];
 
 	while ((len = getsline(line, len, MAXSIZ)) > 0)
-		if (line[len-1] == '\n')
+		if (line[len-1] == '\n' || line[len] == '\0') /* detab line by line */
 			len = detab(line, TABSTOP);
 
-	detab(line, TABSTOP);
-
-	printf("\n%s\n", line);
+	if (len == EOF)
+		printf("\n%s\n", line);
 
 	return 0;
 }
